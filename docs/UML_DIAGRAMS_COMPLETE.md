@@ -338,3 +338,63 @@ erDiagram
 │                                             │
 └─────────────────────────────────────────────┘
 ```
+
+---
+
+## 8. CI/CD Workflow Pipeline
+
+```mermaid
+graph LR
+    A["Developer<br/>Push to GitHub"] --> B["GitHub<br/>Webhook Trigger"]
+    B --> C["Checkout<br/>Code"]
+    C --> D["Setup Python<br/>Environment"]
+    D --> E["Install<br/>Dependencies"]
+    E --> F["Run<br/>Unit Tests<br/>pytest"]
+    F --> G{Tests<br/>Pass?}
+    
+    G -->|No| H["Notify Developer<br/>Build Failed"]
+    H --> I[" Halt Pipeline"]
+    
+    G -->|Yes| J["Code Quality<br/>Checks"]
+    J --> K["Build Docker<br/>Image"]
+    K --> L["Push to<br/>Docker Registry"]
+    L --> M["Deploy to<br/>Staging"]
+    M --> N["Run<br/>Integration Tests"]
+    N --> O{Staging<br/>Tests Pass?}
+    
+    O -->|No| P["Rollback<br/>Staging"]
+    P --> H
+    
+    O -->|Yes| Q["Manual Approval"]
+    Q --> R["Deploy to<br/>Production"]
+    R --> S["Run Health<br/>Checks"]
+    S --> T{Health<br/>OK?}
+    
+    T -->|No| U["Auto Rollback<br/>to Previous"]
+    U --> H
+    
+    T -->|Yes| V[" Deployment<br/>Complete"]
+    
+    style V fill:#90EE90
+    style I fill:#FFB6C6
+    style U fill:#FFB6C6
+```
+
+**CI/CD Pipeline Stages:**
+
+1. **Trigger:** Developer pushes code to GitHub
+2. **Build:** Checkout, setup Python, install dependencies
+3. **Test:** Run pytest (10 test cases)
+4. **Quality:** Code quality checks
+5. **Docker:** Build and push Docker image
+6. **Staging:** Deploy to staging environment with integration tests
+7. **Approval:** Manual gate for production deployment
+8. **Production:** Deploy to production with health checks
+9. **Rollback:** Automatic rollback if health checks fail
+
+**Tools:**
+- **Version Control:** GitHub
+- **CI/CD:** GitHub Actions (configurable)
+- **Testing:** pytest
+- **Container Registry:** Docker Hub or private registry
+- **Monitoring:** Health check endpoints
