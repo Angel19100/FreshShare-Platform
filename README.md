@@ -1,5 +1,12 @@
 # Fresh-Share Network: Hyperlocal Food Waste Exchange Platform
 
+[![CI/CD Pipeline](https://github.com/Angel19100/FreshShare-Platform/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/Angel19100/FreshShare-Platform/actions/workflows/ci.yml)
+[![Tests Passing](https://img.shields.io/badge/tests-10%2F10%20passing-brightgreen)](./tests)
+[![Python Version](https://img.shields.io/badge/python-3.9%2B-blue)](https://www.python.org/downloads/)
+[![Code Style](https://img.shields.io/badge/code%20style-google-blue)](https://google.github.io/styleguide/pyguide.html)
+[![Docker Ready](https://img.shields.io/badge/docker-ready-success)](./Dockerfile)
+[![License](https://img.shields.io/badge/license-MIT-green)](LICENSE)
+
 ## Case Study
 **"The Fresh-Share Network: Designing a System to Connect Local Food Businesses with Charities and Individuals for Immediate Surplus Redistribution."**
 
